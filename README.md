@@ -23,11 +23,13 @@ OpenWeatherMapClient Client = new("App Id", UnitTypes.Metric);
 Various methods of communicating with the API are provided through processors used for different parts of the API.
 ```cs
 . . .
-WeatherResponse? Response = await Client.Processors.CurrentWeatherDataProcessor.GetWeatherByZipCodeAsync("00000", "US"); // WeatherResponse is a class containing generic, current weather information.
+WeatherResponse? Response = await Client.Processors.CurrentWeatherDataProcessor.GetWeatherByZipCodeAsync("00000", "US");
+// WeatherResponse is a class containing generic, current weather information.
 . . .
 
 . . .
 OneCallWeatherResponse? OneCallWeatherResponse = await Client.Processors.OneCallProcessor.CallAsync(0.0m, 0.0m);
+// OneCallWeatherResponse is a class containing all possible relevant weather information regarding the given coordinates.
 . . .
 ```
 
