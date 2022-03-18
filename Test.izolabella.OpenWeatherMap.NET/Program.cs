@@ -1,6 +1,7 @@
 ﻿using izolabella.OpenWeatherMap.NET;
 using izolabella.OpenWeatherMap.NET.Classes;
 using izolabella.OpenWeatherMap.NET.Classes.Responses;
+using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
 
 namespace Test.izolabella.OpenWeatherMap.NET
 {

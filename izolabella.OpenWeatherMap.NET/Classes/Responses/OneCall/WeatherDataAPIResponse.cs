@@ -10,12 +10,12 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
     /// <summary>
     /// A class containing relevant information in regards to the OneCall API in OpenWeatherMap.
     /// </summary>
-    public class CurrentWeather
+    public class WeatherDataAPIResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentWeather"/> class.
+        /// Initializes a new instance of the <see cref="WeatherDataAPIResponse"/> class.
         /// </summary>
-        public CurrentWeather(ulong CurrentTime, ulong Sunset, ulong Sunrise, decimal Temperature, decimal FeelsLike,
+        public WeatherDataAPIResponse(ulong CurrentTime, ulong Sunset, ulong Sunrise, decimal Temperature, decimal FeelsLike,
                               int AtmosphericPressure, decimal Humidity, decimal DewPoint, decimal Cloudiness,
                               decimal UVI, decimal Visibility, decimal WindSpeed, decimal? WindGust, Weather[] Weather)
         {

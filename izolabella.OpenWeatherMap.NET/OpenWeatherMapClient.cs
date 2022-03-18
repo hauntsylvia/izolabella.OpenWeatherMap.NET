@@ -3,6 +3,7 @@
 using izolabella.OpenWeatherMap.NET.Classes;
 using izolabella.OpenWeatherMap.NET.Classes.Processors;
 using izolabella.OpenWeatherMap.NET.Classes.Processors.Full;
+using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -112,47 +113,6 @@ namespace izolabella.OpenWeatherMap.NET
             string ResultingContent = await Content.ReadAsStringAsync();
             T? Result = JsonConvert.DeserializeObject<T>(ResultingContent);
             return Result;
-        }
-
-        private readonly Dictionary<string, KeyValuePair<DateTime, WeatherResponse>> cache = new();
-
-        /// <summary>
-        /// Retrieve weather within a specific zipcode.
-        /// </summary>
-        /// <param name="ZipCode">The 5 digit zipcode to specify search results.</param>
-        /// <returns>A <see cref="WeatherResponse">WeatherResponse</see> corresponding to the specified zipcode
-        /// , or null if nothing can be retrieved.</returns>
-        [Obsolete($"Will be replaced soon. Consider using the {nameof(CurrentWeatherDataProcessor)} class instead.")]
-        public async Task<WeatherResponse?> GetWeatherByZipCode(string ZipCode)
-        {
-            if (this.cache.ContainsKey(ZipCode) && this.cache[ZipCode].Key > DateTime.Now)
-            {
-                return this.cache[ZipCode].Value;
-            }
-            else
-            {
-                WeatherResponse? WeatherResponse = await this.SendAsync<WeatherResponse>("/weather", new Dictionary<string, string>()
-                {
-                    {"zip", ZipCode},
-                });
-                if (WeatherResponse != null)
-                {
-                    if (this.cache.ContainsKey(ZipCode))
-                    {
-                        this.cache[ZipCode] = new KeyValuePair<DateTime, WeatherResponse>(DateTime.Now.AddMinutes(10), WeatherResponse);
-                    }
-                    else
-                    {
-                        this.cache.Add(ZipCode, new KeyValuePair<DateTime, WeatherResponse>(DateTime.Now.AddMinutes(10), WeatherResponse));
-                    }
-
-                    return WeatherResponse;
-                }
-                else
-                {
-                    return null;
-                }
-            }
         }
     }
 }

@@ -20,13 +20,19 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         /// <param name="Lon"></param>
         /// <param name="TimezoneName"></param>
         /// <param name="Current"></param>
+        /// <param name="Minutely"></param>
+        /// <param name="Hourly"></param>
+        /// <param name="Daily"></param>
         [JsonConstructor]
-        public OneCallWeatherResponse(decimal Lat, decimal Lon, string TimezoneName, CurrentWeather Current)
+        public OneCallWeatherResponse(decimal Lat, decimal Lon, string TimezoneName, WeatherDataAPIResponse Current, Minutely[] Minutely, WeatherDataAPIResponse[] Hourly, WeatherDataAPIResponse[] Daily)
         {
             this.Lat = Lat;
             this.Lon = Lon;
             this.TimezoneName = TimezoneName;
             this.Current = Current;
+            this.Minutely = Minutely;
+            this.Hourly = Hourly;
+            this.Daily = Daily;
         }
 
         /// <summary>
@@ -51,6 +57,21 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         /// Current weather information.
         /// </summary>
         [JsonProperty("current")]
-        public CurrentWeather Current { get; }
+        public WeatherDataAPIResponse Current { get; }
+
+        /// <summary>
+        /// Minutely precipitation data.
+        /// </summary>
+        public Minutely[] Minutely { get; }
+
+        /// <summary>
+        /// Hourly weather data.
+        /// </summary>
+        public WeatherDataAPIResponse[] Hourly { get; }
+
+        /// <summary>
+        /// Daily weather data.
+        /// </summary>
+        public WeatherDataAPIResponse[] Daily { get; }
     }
 }

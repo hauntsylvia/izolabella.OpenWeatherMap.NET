@@ -1,12 +1,15 @@
 ﻿using izolabella.OpenWeatherMap.NET.Classes.Internals;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace izolabella.OpenWeatherMap.NET.Classes
+namespace izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData
 {
     /// <summary>
     /// A response containing relevant weather information returned from the OpenWeatherMap API.
     /// </summary>
-    [Obsolete("This class will be removed in the next major version and a new one will be introduced.")]
     [JsonObject(MemberSerialization.OptIn)]
     public class WeatherResponse
     {
@@ -62,12 +65,6 @@ namespace izolabella.OpenWeatherMap.NET.Classes
         /// </summary>
         [JsonProperty("id")]
         public long Id { get; }
-
-        /// <summary>
-        /// City name.
-        /// </summary>
-        [Obsolete($"Use {nameof(CityName)} instead.")]
-        public string Name => this.CityName;
 
         /// <summary>
         /// City name.

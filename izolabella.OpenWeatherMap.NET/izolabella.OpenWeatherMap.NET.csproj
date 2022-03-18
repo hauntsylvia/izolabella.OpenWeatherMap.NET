@@ -13,10 +13,10 @@
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <Description>A package for communicating with the OpenWeatherMap API.
 </Description>
-	  <Version>2.1.0</Version>
-	  <RepositoryUrl>https://github.com/izolabella/OpenWeatherMap.NET</RepositoryUrl>
+	  <Version>3.0.1</Version>
+	  <RepositoryUrl>https://github.com/izolabella/izolabella.OpenWeatherMap.NET</RepositoryUrl>
 	  <PackageTags>Weather; API; OpenWeatherMap</PackageTags>
-	  <PackageReleaseNotes>Introduction to processors and some new methods of talking with the API.</PackageReleaseNotes>
+	  <PackageReleaseNotes>Fixed repo url for nuget.</PackageReleaseNotes>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  <Authors>izolabella</Authors>
 	  <FileVersion></FileVersion>

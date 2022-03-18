@@ -1,4 +1,5 @@
-﻿using System;
+﻿using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
