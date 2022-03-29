@@ -105,7 +105,7 @@ namespace izolabella.OpenWeatherMap.NET
             }
 
             Query["appid"] = this.AppId;
-            Query["units"] = Units.ToString()?.ToLower() ?? this.Units.ToString().ToLower();
+            Query["units"] = Units == null ? this.Units.ToString()?.ToLower() : Units.ToString()?.ToLower();
             UriB.Query = Query.ToString();
             HttpRequestMessage Req = new(HttpMethod.Get, UriB.Uri);
             HttpResponseMessage Msg = await this.Client.SendAsync(Req);

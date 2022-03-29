@@ -28,7 +28,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         public OneCallWeatherResponse(double Lat,
                                       double Lon,
                                       string TimezoneName,
-                                      WeatherResponse Current,
+                                      CurrentWeather Current,
                                       MinutelyPrecipData[] Minutely,
                                       HourlyWeatherData[] Hourly,
                                       DailyWeatherData[] Daily)
@@ -64,7 +64,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         /// Current weather information.
         /// </summary>
         [JsonProperty("current")]
-        public WeatherResponse Current { get; }
+        public CurrentWeather Current { get; }
 
         /// <summary>
         /// Minutely precipitation data.

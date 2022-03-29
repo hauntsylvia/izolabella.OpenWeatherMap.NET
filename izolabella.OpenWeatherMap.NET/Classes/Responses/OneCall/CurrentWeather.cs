@@ -1,4 +1,5 @@
 ﻿using izolabella.OpenWeatherMap.NET.Classes.Internals;
+using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,31 +9,46 @@ using System.Threading.Tasks;
 namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
 {
     /// <summary>
-    /// A class containing relevant information in regards to the OneCall API in OpenWeatherMap. Daily.
+    /// Current weather data.
     /// </summary>
-    public class DailyWeatherData
+    [JsonObject(MemberSerialization.OptIn)]
+    public class CurrentWeather : WeatherResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DailyWeatherData"/> class.
+        /// Initializes a new instance of the <see cref="CurrentWeather"/> class.
         /// </summary>
-        public DailyWeatherData(ulong WeatherTime, ulong Sunset, ulong Sunrise, DailyTemperatureInfo Temperature, TemperatureInfo FeelsLike,
-                              int AtmosphericPressure, double Humidity, double DewPoint, double Cloudiness,
-                              double UVI, double Visibility, double WindSpeed, double? WindGust, Weather[] Weather)
+        public CurrentWeather(Weather[] Weather,
+                                  Main Main,
+                                  Sys Sys,
+                                  int Visibility,
+                                  long Id,
+                                  string Name,
+                                  int Cod,
+                                  ulong Timestamp,
+                                  ulong Sunrise,
+                                  ulong Sunset,
+                                  double Temperature,
+                                  double FeelsLike,
+                                  int Pressure,
+                                  int Humidity,
+                                  double UVI,
+                                  double Clouds,
+                                  double WindSpeed,
+                                  int WindDeg,
+                                  double WindGust) : base(Weather, new(WindSpeed, WindDeg), Main, Sys, Visibility, Id, Name, Cod)
         {
-            this.weatherTime = WeatherTime;
-            this.sunset = Sunset;
+            this.weatherTime = Timestamp;
             this.sunrise = Sunrise;
+            this.sunset = Sunset;
             this.Temperature = Temperature;
             this.FeelsLike = FeelsLike;
-            this.AtmosphericPressure = AtmosphericPressure;
+            this.AtmosphericPressure = Pressure;
             this.humidity = Humidity;
-            this.DewPoint = DewPoint;
-            this.cloudiness = Cloudiness;
             this.UVI = UVI;
-            this.Visibility = Visibility;
+            this.cloudiness = Clouds;
             this.WindSpeed = WindSpeed;
+            this.WindDeg = WindDeg;
             this.WindGust = WindGust;
-            this.Weather = Weather;
         }
 
         [JsonProperty("dt")]
@@ -60,13 +76,13 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
         /// The temperature.
         /// </summary>
         [JsonProperty("temp")]
-        public DailyTemperatureInfo Temperature { get; }
+        public double Temperature { get; }
 
         /// <summary>
         /// The human perception of the temperature.
         /// </summary>
         [JsonProperty("feels_like")]
-        public TemperatureInfo FeelsLike { get; }
+        public double FeelsLike { get; }
 
         /// <summary>
         /// Atmospheric pressure on the sea level, hPa.
@@ -102,27 +118,21 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
         public double UVI { get; }
 
         /// <summary>
-        /// The visibility average in metres.
-        /// </summary>
-        [JsonProperty("visibility")]
-        public double Visibility { get; }
-
-        /// <summary>
         /// Wind speed. Units – default: metre/sec, metric: metre/sec, imperial: miles/hour.
         /// </summary>
         [JsonProperty("wind_speed")]
         public double WindSpeed { get; }
 
         /// <summary>
+        /// Wind degree.
+        /// </summary>
+        [JsonProperty("wind_deg")]
+        public int WindDeg { get; }
+
+        /// <summary>
         /// Wind gust. Units – default: metre/sec, metric: metre/sec, imperial: miles/hour.
         /// </summary>
         [JsonProperty("wind_gust")]
         public double? WindGust { get; }
-
-        /// <summary>
-        /// Group of weather parameters.
-        /// </summary>
-        [JsonProperty("weather")]
-        public Weather[] Weather { get; }
     }
 }
