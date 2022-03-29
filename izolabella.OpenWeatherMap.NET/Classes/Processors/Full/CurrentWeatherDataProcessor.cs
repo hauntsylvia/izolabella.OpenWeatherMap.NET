@@ -70,7 +70,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Processors.Full
         /// <param name="Lon">Longitude</param>
         /// <returns>A <see cref="WeatherResponse">WeatherResponse</see> corresponding to the specified zipcode
         /// , or null if nothing can be retrieved.</returns>
-        public async Task<WeatherResponse?> GetWeatherByLatAndLonAsync(decimal Lat, decimal Lon)
+        public async Task<WeatherResponse?> GetWeatherByLatAndLonAsync(double Lat, double Lon)
         {
             WeatherResponse? WeatherResponse = await this.Instance.SendAsync<WeatherResponse>("/weather", new Dictionary<string, string>()
             {

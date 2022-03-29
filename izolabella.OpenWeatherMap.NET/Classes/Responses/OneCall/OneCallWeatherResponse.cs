@@ -1,4 +1,5 @@
 ﻿using izolabella.OpenWeatherMap.NET.Classes.Internals;
+using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
 using izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
     public class OneCallWeatherResponse
     {
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="OneCallWeatherResponse"/> class.
         /// </summary>
         /// <param name="Lat"></param>
         /// <param name="Lon"></param>
@@ -24,28 +25,34 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         /// <param name="Hourly"></param>
         /// <param name="Daily"></param>
         [JsonConstructor]
-        public OneCallWeatherResponse(decimal Lat, decimal Lon, string TimezoneName, WeatherDataAPIResponse Current, Minutely[] Minutely, WeatherDataAPIResponse[] Hourly, WeatherDataAPIResponse[] Daily)
+        public OneCallWeatherResponse(double Lat,
+                                      double Lon,
+                                      string TimezoneName,
+                                      WeatherResponse Current,
+                                      MinutelyPrecipData[] Minutely,
+                                      HourlyWeatherData[] Hourly,
+                                      DailyWeatherData[] Daily)
         {
             this.Lat = Lat;
             this.Lon = Lon;
             this.TimezoneName = TimezoneName;
             this.Current = Current;
-            this.Minutely = Minutely;
-            this.Hourly = Hourly;
-            this.Daily = Daily;
+            this.Minutely = Minutely.OrderBy(M => M.TimestampUTC).ToArray();
+            this.Hourly = Hourly.OrderBy(H => H.WeatherTime).ToArray();
+            this.Daily = Daily.OrderBy(D => D.WeatherTime).ToArray();
         }
 
         /// <summary>
         /// Latitude of the location of this request.
         /// </summary>
         [JsonProperty("lat")]
-        public decimal Lat { get; }
+        public double Lat { get; }
 
         /// <summary>
         /// Longitude of the location of this request.
         /// </summary>
         [JsonProperty("lon")]
-        public decimal Lon { get; }
+        public double Lon { get; }
 
         /// <summary>
         /// The timezone name.
@@ -57,21 +64,21 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses
         /// Current weather information.
         /// </summary>
         [JsonProperty("current")]
-        public WeatherDataAPIResponse Current { get; }
+        public WeatherResponse Current { get; }
 
         /// <summary>
         /// Minutely precipitation data.
         /// </summary>
-        public Minutely[] Minutely { get; }
+        public MinutelyPrecipData[] Minutely { get; }
 
         /// <summary>
         /// Hourly weather data.
         /// </summary>
-        public WeatherDataAPIResponse[] Hourly { get; }
+        public HourlyWeatherData[] Hourly { get; }
 
         /// <summary>
         /// Daily weather data.
         /// </summary>
-        public WeatherDataAPIResponse[] Daily { get; }
+        public DailyWeatherData[] Daily { get; }
     }
 }

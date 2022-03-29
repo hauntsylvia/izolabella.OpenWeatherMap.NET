@@ -30,7 +30,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Processors.Full
         /// <param name="Lat"></param>
         /// <param name="Lon"></param>
         /// <returns>A <see cref="OneCallWeatherResponse"/>.</returns>
-        public async Task<OneCallWeatherResponse?> CallAsync(decimal Lat, decimal Lon)
+        public async Task<OneCallWeatherResponse?> CallAsync(double Lat, double Lon)
         {
             OneCallWeatherResponse? WeatherResponse = await this.Instance.SendAsync<OneCallWeatherResponse>("/onecall", new Dictionary<string, string>()
             {

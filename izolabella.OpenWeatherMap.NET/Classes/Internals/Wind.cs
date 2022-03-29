@@ -8,7 +8,7 @@
         /// <summary>
         /// A class containing relevant wind information.
         /// </summary>
-        public Wind(decimal Speed, int Deg)
+        public Wind(double Speed, int Deg)
         {
             this.Speed = Speed;
             this.Deg = Deg;
@@ -16,7 +16,7 @@
         /// <summary>
         /// The speed of the wind in miles per hour.
         /// </summary>
-        public decimal Speed { get; set; }
+        public double Speed { get; set; }
         /// <summary>
         /// The current rotational degree of the wind.
         /// </summary>

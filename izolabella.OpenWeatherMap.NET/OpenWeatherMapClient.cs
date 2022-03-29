@@ -95,7 +95,7 @@ namespace izolabella.OpenWeatherMap.NET
         /// </summary>
         public UnitTypes Units { get; set; } = UnitTypes.Default;
 
-        internal async Task<T?> SendAsync<T>(string EndUrl, Dictionary<string, string> Args)
+        internal async Task<T?> SendAsync<T>(string EndUrl, Dictionary<string, string> Args, UnitTypes? Units = null)
         {
             UriBuilder UriB = new(this.Client.BaseAddress + EndUrl);
             System.Collections.Specialized.NameValueCollection Query = HttpUtility.ParseQueryString(string.Empty);
@@ -105,7 +105,7 @@ namespace izolabella.OpenWeatherMap.NET
             }
 
             Query["appid"] = this.AppId;
-            Query["units"] = this.Units.ToString().ToLower();
+            Query["units"] = Units.ToString()?.ToLower() ?? this.Units.ToString().ToLower();
             UriB.Query = Query.ToString();
             HttpRequestMessage Req = new(HttpMethod.Get, UriB.Uri);
             HttpResponseMessage Msg = await this.Client.SendAsync(Req);
