@@ -22,7 +22,6 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
                                   Sys Sys,
                                   int Visibility,
                                   long Id,
-                                  string Name,
                                   int Cod,
                                   ulong Timestamp,
                                   ulong Sunrise,
@@ -35,7 +34,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.OneCall
                                   double Clouds,
                                   double WindSpeed,
                                   int WindDeg,
-                                  double WindGust) : base(Weather, new(WindSpeed, WindDeg), Main, Sys, Visibility, Id, Name, Cod)
+                                  double WindGust) : base(Weather, new(WindSpeed, WindDeg), Main, Sys, Visibility, Id, null, Cod)
         {
             this.weatherTime = Timestamp;
             this.sunrise = Sunrise;

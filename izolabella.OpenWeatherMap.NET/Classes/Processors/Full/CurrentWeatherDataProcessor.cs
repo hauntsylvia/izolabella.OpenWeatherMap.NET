@@ -68,15 +68,16 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Processors.Full
         /// </summary>
         /// <param name="Lat">Latitude</param>
         /// <param name="Lon">Longitude</param>
+        /// <param name="Units">Units</param>
         /// <returns>A <see cref="WeatherResponse">WeatherResponse</see> corresponding to the specified zipcode
         /// , or null if nothing can be retrieved.</returns>
-        public async Task<WeatherResponse?> GetWeatherByLatAndLonAsync(double Lat, double Lon)
+        public async Task<WeatherResponse?> GetWeatherByLatAndLonAsync(double Lat, double Lon, UnitTypes? Units = null)
         {
             WeatherResponse? WeatherResponse = await this.Instance.SendAsync<WeatherResponse>("/weather", new Dictionary<string, string>()
             {
                 {"lat", $"{Lat}"},
                 {"lon", $"{Lon}"}
-            });
+            }, Units);
             return WeatherResponse;
         }
     }

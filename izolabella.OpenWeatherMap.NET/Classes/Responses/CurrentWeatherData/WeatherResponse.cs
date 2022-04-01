@@ -17,7 +17,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData
         /// A response containing relevant weather information returned from the OpenWeatherMap API.
         /// </summary>
         [JsonConstructor]
-        public WeatherResponse(Weather[] Weather, Wind Wind, Main Main, Sys Sys, int Visibility, long Id, string Name, int Cod)
+        public WeatherResponse(Weather[] Weather, Wind Wind, Main Main, Sys Sys, int Visibility, long Id, string? Name, int Cod)
         {
             this.Weather = Weather;
             this.Wind = Wind;
@@ -70,7 +70,7 @@ namespace izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData
         /// City name.
         /// </summary>
         [JsonProperty("name")]
-        public string CityName { get; }
+        public string? CityName { get; }
 
         /// <summary>
         /// Internal parameters.
