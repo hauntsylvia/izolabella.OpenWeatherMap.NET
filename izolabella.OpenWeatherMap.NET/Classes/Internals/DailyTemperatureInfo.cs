@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace izolabella.OpenWeatherMap.NET.Classes.Internals
+﻿namespace izolabella.OpenWeatherMap.NET.Classes.Internals
 {
     /// <summary>
     /// A class containing full temperature information.

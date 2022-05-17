@@ -1,8 +1,5 @@
 ﻿using izolabella.OpenWeatherMap.NET.Classes.Responses;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace izolabella.OpenWeatherMap.NET.Classes.Processors.Full

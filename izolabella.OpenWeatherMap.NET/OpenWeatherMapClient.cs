@@ -1,9 +1,5 @@
 ﻿global using Newtonsoft.Json;
-
-using izolabella.OpenWeatherMap.NET.Classes;
 using izolabella.OpenWeatherMap.NET.Classes.Processors;
-using izolabella.OpenWeatherMap.NET.Classes.Processors.Full;
-using izolabella.OpenWeatherMap.NET.Classes.Responses.CurrentWeatherData;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
